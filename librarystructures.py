@@ -38,8 +38,12 @@ class Library:
 
     def title_list(self) -> str:
         titles = ''
-        for book in self.books:
-            titles += f"{book.title}\n"
+
+        if not self.books: # self.books is empty
+            return 'There are no books currently stored in the library'
+
+        for i, book in enumerate(self.books):
+            titles += f"{i}: {book.title}\n"
         return titles
 
     def add_book(self, book: Book):

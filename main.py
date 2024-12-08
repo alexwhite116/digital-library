@@ -30,7 +30,7 @@ def get_int_input(prompt: str) -> int:
 def main():
     library = Library()
     while True:
-        user_input = input("DISPLAY / NEW / EXIT: ").lower()
+        user_input = input("DISPLAY / NEW / EXIT / SAVE: ").lower()
 
         if user_input == 'exit':
             print('Thank you! Exiting now.')
@@ -38,6 +38,7 @@ def main():
 
         if user_input == 'display':
             print(library.title_list())
+            continue
 
         if user_input == 'new':
             title = get_string_input("Book Title: ")
@@ -47,6 +48,14 @@ def main():
             publication_year = get_int_input("Publication year: ")
             book = create_book(title, author, genre, pages, publication_year)
             library.add_book(book)
+            continue
+
+        if user_input == 'save':
+            # ...
+            continue
+
+
+        print("Please enter one of the options displayed.")
 
 if __name__ == '__main__':
     main()
