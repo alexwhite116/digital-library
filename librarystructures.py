@@ -32,6 +32,16 @@ class Book:
         ]
         return book_list
 
+    def dict_to_book(self, dictionary: dict[str, str | int]):
+        try:
+            self.title = dictionary['title']
+            self.author = dictionary['author']
+            self.genre = dictionary['genre']
+            self.pages = dictionary['pages']
+            self.publication_year = dictionary['publication_year']
+        except KeyError as e:
+            print(f'{e} --- Dictionary should have keys: "title", "author", "genre", "pages", "publication_year"')
+
 class Library:
     def __init__(self):
         self.books: list[Book] = []

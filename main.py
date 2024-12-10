@@ -38,18 +38,18 @@ def get_book_details() -> list[str | int]:
 def save_library(filename: str, library: Library) -> None:
     if filename[-4:] == '.csv':
         filename = filename[:-4]
-    libraryList: list[dict] = [book.to_dict() for book in library.books]
+    library_list: list[dict] = [book.to_dict() for book in library.books]
     print('Saving...')
     with open(f'{filename}.csv', 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=libraryList[0].keys())
+        writer = csv.DictWriter(csvfile, fieldnames=library_list[0].keys())
         writer.writeheader()
-        writer.writerows(libraryList)
+        writer.writerows(library_list)
     print(f'Saved successfully to {filename}.csv')
 
 def main():
     library = Library()
     while True:
-        user_input = input("DISPLAY / NEW / EXIT / SAVE: ").lower()
+        user_input = input("DISPLAY / NEW / EXIT / SAVE / LOAD: ").lower()
 
         if user_input == 'exit':
             print('Thank you! Exiting now.')
@@ -66,10 +66,24 @@ def main():
             library.add_book(book)
             continue
 
+
+        # TODO: Change functionality so that user can input own filepath, and so there is a warning if overwriting
+        #       existing file
         if user_input == 'save':
             save_library('books', library)
             continue
 
+        # TODO: Change functionality to load from .csv file instead of pre-populated list
+        if user_input == 'load':
+            load_list = ['Heart of Darkness', # title
+                         'Joseph Conrad', # author
+                         'Classical Fiction', # genre
+                         111, # pages
+                         1899, # publication year
+            ]
+            book = create_book(*load_list)
+            library.add_book(book)
+            continue
 
         print("Please enter one of the options displayed.")
 
