@@ -1,3 +1,5 @@
 .venv/
 .idea/
 books.csv
+__pycache__/
+libraries/
