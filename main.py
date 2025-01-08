@@ -92,10 +92,12 @@ def main():
             continue
 
         if user_input == 'new':
-            # details = get_book_details()
-            details = ['Great Expectations', 'Charles Dickens', 'Classical Fiction', 479, 1861]
-            book: Book = create_book(*details) # unpack details
-            library.add_book(book)
+            continue_adding: str = 'y' # flag to check if user wants to keep adding books
+            while continue_adding == 'y':
+                details = get_book_details()
+                book: Book = create_book(*details) # unpack details
+                library.add_book(book)
+                continue_adding = get_yes_no_input('Do you want to add another book?')
             continue
 
 
